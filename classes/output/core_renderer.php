@@ -320,6 +320,35 @@ class core_renderer extends \theme_bootstrapbase_core_renderer {
 
         return $content;
     }
+    
+    
+    public function toggledock_menu() {
+        $toggledockmenu = new custom_menu('', current_language());
+        return $this->render_toggledock_menu($toggledockmenu);
+    }
+
+    protected function render_toggledock_menu(custom_menu $menu) {
+        if (($this->page->pagelayout == 'course') ||
+            ($this->page->pagelayout == 'incourse') ||
+            ($this->page->pagelayout == 'admin')) { // Go to bottom.
+            $toggledock = html_writer::tag('span', '',
+                array('class' => 'fa fa-arrows-h toggledock_headericon', 'aria-hidden' => 'true'));
+           $url = new moodle_url($this->page->url);
+          $url->set_anchor('#');
+            $menu->add($toggledock, $url, get_string('toggledock', 'theme_shoelace'), 10001);
+            
+            $jsdata = array('data' => array('toggleclass' =>'toggledock_headericon'));
+            $this->page->requires->js_call_amd('theme_shoelace/toggledock', 'init', $jsdata);
+        }
+
+        $content = html_writer::start_tag('ul', array('class' => 'nav sltoggledock'));
+        foreach ($menu->get_children() as $item) {
+            $content .= $this->render_custom_menu_item($item, 1);
+        }
+        $content .= html_writer::end_tag('ul');
+
+        return $content;
+    }
 
     public function anti_gravity() {
         $icon = html_writer::start_tag('span',
