@@ -328,11 +328,14 @@ class core_renderer extends \theme_bootstrapbase_core_renderer {
     }
 
     protected function render_toggledock_menu(custom_menu $menu) {
+    	global $CFG;
+    	
         if (($this->page->pagelayout == 'course') ||
             ($this->page->pagelayout == 'incourse') ||
             ($this->page->pagelayout == 'admin')) { // Go to bottom.
-            $toggledock = html_writer::tag('span', '',
-                array('class' => 'fa fa-arrows-h toggledock_headericon', 'aria-hidden' => 'true'));
+            $toggledock_icon = html_writer::tag('img', '',array('src'=>'/theme/shoelace/pix/TOC_close.svg'));
+            $toggledock = html_writer::tag('span', $toggledock_icon,
+                array('class' => 'toggledock_headericon', 'aria-hidden' => 'true'));
            $url = new moodle_url($this->page->url);
           $url->set_anchor('#');
             $menu->add($toggledock, $url, get_string('toggledock', 'theme_shoelace'), 10001);

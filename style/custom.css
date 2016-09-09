@@ -32,6 +32,10 @@ a.logo {
     float: right;
 }
 
+.toggledock_headericon > img {
+	width: 15px;
+}
+
 /* Custom CSS Settings
 -------------------------*/
 [[setting:customcss]]
