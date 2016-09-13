@@ -43,6 +43,7 @@ if (right_to_left()) {
 
 $hassidepre = (empty($PAGE->layout_options['noblocks']) && $PAGE->blocks->region_has_content('side-pre', $OUTPUT));
 $hassidepost = (empty($PAGE->layout_options['noblocks']) && $PAGE->blocks->region_has_content('side-post', $OUTPUT));
+$showslider = \theme_shoelace\toolbox::showslider($PAGE->theme->settings);
 $contentclass = 'span8';
 $blockclass = 'span4';
 if (!($hassidepre AND $hassidepost)) {
@@ -50,6 +51,14 @@ if (!($hassidepre AND $hassidepost)) {
     $contentclass = 'span9';
     $blockclass = 'span3';
 }
+//ensure JQuery and pre-AMD javascript is loaded OWL Carousel
+$PAGE->requires->jquery();
+$PAGE->requires->js('/theme/shoelace/owl-carousel/owl.carousel.min.js');
+$PAGE->requires->js('/theme/shoelace/javascript/loadleaderboard.js');
+$PAGE->requires->css('/theme/shoelace/owl-carousel/owl.theme.css');
+$PAGE->requires->css('/theme/shoelace/owl-carousel/owl.carousel.css');
+$PAGE->requires->css('/theme/shoelace/owl-carousel/owl.transitions.css');
+$PAGE->requires->css('/theme/shoelace/datatables/media/css/jquery.dataTables.min.css');
 
 echo $OUTPUT->doctype() ?>
 <html <?php echo $OUTPUT->htmlattributes(); ?>>
@@ -81,9 +90,13 @@ require_once(\theme_shoelace\toolbox::get_tile_file('header'));
     </header>
 
     <?php
+    if ($showslider) {
+        require_once(\theme_shoelace\toolbox::get_tile_file('frontpageslider'));
+    }
     if (!empty($PAGE->theme->settings->nummarketingblocks)) {
         echo $OUTPUT->shoelaceblocks('marketing', 'row-fluid', 'aside', $PAGE->theme->settings->nummarketingblocks);
     }
+    
     ?>
     <div id="page-content" class="row-fluid">
         <div id="<?php echo $regionbsid ?>" class="span9">
@@ -91,7 +104,13 @@ require_once(\theme_shoelace\toolbox::get_tile_file('header'));
                 <div id="region-main" class="<?php echo $contentclass; ?> pull-right">
                     <section id="region-main-shoelace" class="row-fluid">
                         <?php
-                        echo $OUTPUT->main_content();
+                             if ($PAGE->theme->settings->leaderboardcount > 0) {
+								require_once(\theme_shoelace\toolbox::get_tile_file('leaderboardcarousel')); 
+   							 }
+   							 if(true){
+   							 	require_once(\theme_shoelace\toolbox::get_tile_file('leaderboardtable'));
+   							 }
+                             echo $OUTPUT->main_content();
                         ?>
                     </section>
                     <div id="region-main-shoelace-shadow"></div>

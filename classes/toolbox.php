@@ -179,6 +179,13 @@ class toolbox {
         if (!empty($theme->settings->invert)) {
             $return->navbarclass .= ' navbar-inverse';
         }
+        
+        if (!empty($settings->fontawesome) && ($settings->fontawesome == 1)) {
+            $return->additionalbodyclasses[] = 'fontawesome';
+            $return->fontawesome = true;
+        } else {
+            $return->fontawesome = false;
+        }
 
         if (!empty($theme->settings->logo)) {
             $return->heading = \html_writer::link($CFG->wwwroot, '', array('title' => get_string('home'), 'class' => 'logo'));
@@ -192,5 +199,57 @@ class toolbox {
         }
 
         return $return;
+    }
+    
+     /**
+     * States if the front page slides can be shown.
+     *
+     * @return array of slideno => 1 = no, 2 = yes.
+     */
+    static public function shown_frontpageslides() {
+        $slides = array();
+        $settings =  \theme_config::load('shoelace')->settings;
+
+        $frontpagenumberofslides = (empty($settings->frontpagenumberofslides)) ? false : $settings->frontpagenumberofslides;
+        if ($frontpagenumberofslides) {
+            $loggedin = isloggedin();
+            $lang = current_language();
+            for ($sl = 1; $sl <= $frontpagenumberofslides; $sl++) {
+                $frontpageslidestatus = 'frontpageslidestatus' . $sl;
+                if (empty($settings->$frontpageslidestatus) or ( $settings->$frontpageslidestatus == 2)) { // 2 is published.
+                    $frontpageslidedisplay = 'frontpageslidedisplay' . $sl;
+                    if (empty($settings->$frontpageslidedisplay)
+                            or ( $settings->$frontpageslidedisplay == 1) // Always.
+                            or ( ($settings->$frontpageslidedisplay == 2) and ( $loggedin == false)) // Logged out.
+                            or ( ($settings->$frontpageslidedisplay == 3) and ( $loggedin == true)) // Logged in.
+                    ) {
+                        $frontpageslidelang = 'frontpageslidelang' . $sl;
+                        if (empty($settings->$frontpageslidelang) or ( $settings->$frontpageslidelang == 'all') or ( $settings->$frontpageslidelang
+                                == $lang)) {
+                            // Slide can be shown.
+                            $slides[$sl] = 2;
+                        } else {
+                            // Slide is not shown.
+                            $slides[$sl] = 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $slides;
+    }
+
+    
+    static public function showslider($settings) {
+        $devicetype = \core_useragent::get_device_type(); // In moodlelib.php.
+        if ($devicetype == "mobile") {
+            $showslider = (empty($settings->frontpageslidermobile)) ? false : $settings->frontpageslidermobile;
+        } else if ($devicetype == "tablet") {
+            $showslider = (empty($settings->frontpageslidertablet)) ? false : $settings->frontpageslidertablet;
+        } else {
+            $showslider = true;
+        }
+        return $showslider;
     }
 }

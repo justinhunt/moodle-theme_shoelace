@@ -24,6 +24,8 @@
  * @author     Based on code originally written by Mary Evans, Bas Brands, Stuart Lamour and David Scotson.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+ 
+ define('THEME_SHOELACE_CAROUSEL_MAX',10); //if you change this also add/remove board_x in shoelacecustom.less
 
 function theme_shoelace_process_css($css, $theme) {
     // Set the background image for the logo.
@@ -92,6 +94,18 @@ function theme_shoelace_less_variables($theme) {
     if (!empty($theme->settings->navbartextcolour)) {
         $variables['navbarText'] = $theme->settings->navbartextcolour;
     }
+    
+    //leaderboard colours
+    //to do: need to turn this max number(10) into a constant!!!
+    for($i=1;$i<THEME_SHOELACE_CAROUSEL_MAX + 1;$i++){
+		if(property_exists($theme->settings,'leaderboardbackcolour' . $i)){
+			$variables['leaderboardbackcolour' . $i] = $theme->settings->{leaderboardbackcolour . $i};
+			$variables['leaderboardforecolour' . $i] = $theme->settings->{leaderboardforecolour . $i};
+		}else{
+			$variables['leaderboardbackcolour' . $i] = '#c2bd42';
+			$variables['leaderboardforecolour' . $i] = '#ffffff';
+		}
+    }
 
     return $variables;
 }
@@ -110,12 +124,14 @@ function theme_shoelace_extra_less($theme) {
 
     $content = '@import "'.$CFG->dirroot.'/theme/bootstrapbase/less/bootstrap/mixins";';
     $content = '@import "'.$CFG->dirroot.'/theme/bootstrapbase/less/moodle";';
+     // $content = '@import "'.$CFG->dirroot.'/theme/shoehorn/less/bootstrap3/carousel";';
 
     $content .= \theme_shoelace\toolbox::get_extra_less('variables-shoelace');
     $content .= \theme_shoelace\toolbox::get_extra_less('bootstrapchanges');
     $content .= \theme_shoelace\toolbox::get_extra_less('moodlechanges');
     $content .= \theme_shoelace\toolbox::get_extra_less('shoelacechanges');
     $content .= \theme_shoelace\toolbox::get_extra_less('shoelacecustom');
+    //$content .= \theme_shoelace\toolbox::get_extra_less('shoelacecarousel');
 
     return $content;
 }
@@ -141,6 +157,9 @@ function theme_shoelace_pluginfile($course, $cm, $context, $filearea, $args, $fo
                 $options['cacheability'] = 'public';
             }
             return $theme->setting_file_serve('logo', $args, $forcedownload, $options);
+        } else if (substr($filearea, 0, 19) === 'frontpageslideimage') {
+            $theme = theme_config::load('shoelace');
+            return $theme->setting_file_serve($filearea, $args, $forcedownload, $options);
         } else {
             send_file_not_found();
         }

@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <?php echo $OUTPUT->gotobottom_menu(); ?>
+            <?php if(false){echo $OUTPUT->gotobottom_menu();} ?>
             <?php echo $OUTPUT->user_menu(); ?>
             <div class="nav-collapse collapse">
                 <?php echo $OUTPUT->custom_menu(); ?>

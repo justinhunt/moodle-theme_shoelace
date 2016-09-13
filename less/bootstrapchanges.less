@@ -143,3 +143,195 @@ a:focus {
   background-color: rgba(red(@wellBackground), green(@wellBackground), blue(@wellBackground), 0.7);
   border: 1px dotted darken(@wellBackground, 7%);
 }
+
+// Carousel.less.
+// Centre the image.
+.carousel-inner {
+  > .item {
+    height: @carousel-base-height;
+    .carousel-image-container {
+      text-align: center;
+      width: 100%;
+      padding-left: 27px;
+      padding-right: 27px;
+      line-height: @carousel-base-height; 
+    }
+    img {
+       width: auto;
+       height: auto;
+       margin: 0 auto;
+       padding: 0;
+       vertical-align: @carousel-image-valign; // See: http://www.vanseodesign.com/css/vertical-centering/.
+       max-width: 100%;
+    }
+  }
+}
+
+@media(min-width: @screen-xs-min) {
+  .carousel-inner {
+    > .item {
+      height: @carousel-xs-min-height;
+      .carousel-image-container {
+      line-height: @carousel-xs-min-height; 
+      }
+      img {
+         max-height: @carousel-xs-min-height;
+      }
+    }
+  }
+}
+
+@media(min-width: @screen-sm-min) {
+  .carousel-inner {
+    > .item {
+      height: @carousel-sm-min-height;
+      .carousel-image-container {
+       line-height: @carousel-sm-min-height;
+      }
+      img {
+         max-height: @carousel-sm-min-height;
+      }
+    }
+  }
+}
+
+
+@media(min-width: @screen-md-min) {
+  .carousel-inner {
+    > .item {
+      height: @carousel-md-min-height;
+      .carousel-image-container {
+      line-height: @carousel-md-min-height;
+        padding-left: 54px;
+        padding-right: 54px;
+      }
+      img {
+         max-height: @carousel-md-min-height;
+      }
+    }
+  }
+}
+
+/* originally 500px */
+@media(min-width: @screen-lg-min) {
+  .carousel-inner {
+    > .item {
+      height: @carousel-lg-min-height;
+      .carousel-image-container {
+       line-height: @carousel-lg-min-height; 
+      img {
+         max-height: @carousel-lg-min-height;
+      }
+    }
+  }
+}
+}
+
+// Left/right controls for nav.
+.carousel-control {
+  background: none;  // Removes background that was used to surround original control.
+  border: none; // No border required.
+  width: 26px;
+  height: 26px;
+  color: @carousel-control-color;
+
+  top: 40%;
+  margin-top: -20px;
+  font-size: 26px;
+  font-weight: 100;
+  line-height: 30px;
+
+  &.left,
+  &.right {
+    background-image: none;
+    background-repeat: no-repeat;
+  }
+
+  .icon-prev, .glyphicon-chevron-left {
+    left: auto;
+  }
+
+  .icon-next, .glyphicon-chevron-right {
+    right: auto;
+  }
+
+  // Hover/focus state.
+  &:hover,
+  &:focus {
+    color: lighten(@carousel-control-color, 5%);
+  }
+}
+
+@media(min-width: @screen-xs-min) {
+    .carousel-control {
+        width: 36px;
+        height: 36px;
+        font-size: 36px;
+    }
+}
+
+@media(min-width: @screen-sm-min) {
+    .carousel-control {
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+    }
+}
+
+@media(min-width: @screen-md-min) {
+    .carousel-control {
+        width: 52px;
+        height: 52px;
+        font-size: 52px;
+    }
+}
+
+@media(min-width: @screen-lg-min) {
+    .carousel-control {
+        width: 60px;
+        height: 60px;
+        font-size: 60px;
+    }
+}
+
+.carouselslider a.carousel-control {
+    display: none;
+}
+body {
+    .carouselslider:hover, &.mobiledevice .carouselslider, &.tabletdevice .carouselslider {
+        a.carousel-control {
+            display: block;
+        }
+    }
+}
+
+// Carousel indicator pips.
+.carousel-indicators {
+  li {
+    display: none;
+    background: @carousel-control-color;
+    background: @carousel-control-color;
+  }
+}
+
+// Caption for text.
+.carousel-caption {
+  background: @carousel-control-color;
+  background: rgba(red(@carousel-control-color),green(@carousel-control-color),blue(@carousel-control-color),.7);
+  border-radius: 2px;
+  border: 1px solid ;
+  text-align: center;
+}
+
+@media(max-width: @screen-sm-max) {
+  .carousel-caption {
+    padding-top: 5px;
+    h4 {
+        font-size: 14px;
+    }
+    p {
+        font-size: 12px;
+    }
+  }
+}
+

@@ -108,3 +108,72 @@ $string['gotobottom'] = 'Go to the bottom of the page';
 
 // Anti-gravity.
 $string['antigravity'] = 'Back to top';
+
+//from shoehorn
+$string['draft'] = 'Draft';
+$string['published'] = 'Published';
+$string['langpack_urlname'] = 'Language packs';
+
+// Display:....
+$string['loggedout'] = 'Logged out';
+$string['loggedin'] = 'Logged in';
+$string['always'] = 'Always';
+
+// Leaderboard Unique strings
+$string['majhub'] = 'MAJ Hub';
+$string['generalsettings'] = 'General';
+$string['leaderboards'] = 'Leaderboards';
+$string['leaderboardcount'] = 'Leaderboard Count';
+$string['leaderboardcount_desc'] = 'Specify here the number of leaderboards you wish to display';
+$string['leaderboardtitle'] = 'Leaderboard Title({$a})';
+$string['leaderboardtitle_desc'] = 'This will be the leaderboard title as it appears above the board on the page.';
+$string['leaderboardsql'] = 'Leaderboard SQL({$a})';
+$string['leaderboardsql_desc'] = 'The leaderboard SQL will be passed as is to a $DB->get_records_sql() call. This result will be the data from which the leaderboard will be built.';
+
+// Front page slider settings.
+$string['frontpagesliderheading'] = 'Front page slider';
+$string['frontpagesliderheadingsub'] = 'Present your portfolio with slides on the front page';
+$string['frontpagesliderheadingdesc'] = "Present your portfolio with slides containing an image, URL and text.  To change the number of slides change the 'Number of front page slides' below and save the page to update.  The best height for an image is 500px as this is the maximum space at greater than 1200px wide window resolution.  The dimensions are then calculated based on the available space and image ratio.";
+$string['frontpageslidersettingspageheading'] = 'Slide {$a->slide}';
+$string['frontpagesliderspeed'] = 'Set the slider transition speed in ms';
+$string['frontpagesliderspeed_desc'] = 'Set the slide transition speed in milliseconds.  Set to 0 for manual control.';
+$string['frontpageslidermobile'] = 'Display front page slider on mobile';
+$string['frontpageslidermobile_desc'] = 'Display the front page slider on mobile devices.';
+$string['frontpageslidertablet'] = 'Display front page slider on tablet';
+$string['frontpageslidertablet_desc'] = 'Display the front page slider on tablet devices.';
+$string['frontpagenumberofslides'] = 'Number of front page slides';
+$string['frontpagenumberofslides_desc'] = 'Number of slides on the front page slider.';
+$string['frontpageslideimage'] = 'Slide {$a->slide} image';
+$string['frontpageslideimage_desc'] = 'The image for slide {$a->slide}';
+$string['frontpageslideurl'] = 'Slide {$a->slide} URL';
+$string['frontpageslideurl_desc'] = 'The URL for slide {$a->slide}';
+$string['frontpageslidecaptiontitle'] = 'Slide {$a->slide} caption title';
+$string['frontpageslidecaptiontitle_desc'] = 'The caption title for slide {$a->slide}';
+$string['frontpageslidecaptiontext'] = 'Slide {$a->slide} caption text';
+$string['frontpageslidecaptiontext_desc'] = 'The caption text for slide {$a->slide}';
+$string['frontpageslidestatus'] = 'Slide {$a->slide} status';
+$string['frontpageslidestatus_desc'] = 'Set to \'Draft\' when you are creating the slide and \'Published\' when you want it to be seen taking into account the display and language settings.';
+$string['frontpageslidedisplay'] = 'Slide {$a->slide} status';
+$string['frontpageslidedisplay_desc'] = 'When to display slide {$a->slide}.';
+$string['frontpageslidelang'] = 'Slide {$a->slide} language';
+$string['frontpageslidelang_desc'] = 'Slide language number {$a->slide}.  To see more languages, install language packs on \'{$a->url}\'.  Set to \'all\' for all languages.';
+
+//FontAwesome
+$string['fontawesome'] = 'Use the FontAwesome icon font';
+$string['fontawesome_desc'] = 'Enable this option to use the FontAwesome icon font.';
+
+
+//leadertable
+$string['coursesearch'] = "Course Search";
+$string['coursename'] = "Course Name";
+$string['downloadrank'] = "Download Ranking";
+$string['moodleversion'] = "Moodle";
+$string['uploaddate'] = "Date";
+$string['contributor'] = "Author";
+$string['leaderboardbackcolour']="Leaderboard background color";
+$string['leaderboardbackcolour_desc']="";
+$string['leaderboardforecolour']="Leaderboard foreground color";
+$string['leaderboardforecolour_desc']="";
+
+
+

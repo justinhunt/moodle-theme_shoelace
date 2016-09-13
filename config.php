@@ -80,26 +80,26 @@ $THEME->layouts = array(
     ),
     // Standard layout with blocks, this is recommended for most pages with general information.
     'standard' => array(
-        'file' => 'columns3.php',
-        'regions' => $col3regions,
+        'file' => 'columns2.php',
+        'regions' => $col2regions,
         'defaultregion' => 'side-pre',
     ),
     // Main course page.
     'course' => array(
-        'file' => 'columns3.php',
-        'regions' => $col3regions,
+        'file' => 'columns2.php',
+        'regions' => $col2regions,
         'defaultregion' => 'side-pre',
         'options' => array('langmenu'=>true),
     ),
     'coursecategory' => array(
-        'file' => 'columns3.php',
-        'regions' => $col3regions,
+        'file' => 'columns2.php',
+        'regions' => $col2regions,
         'defaultregion' => 'side-pre',
     ),
     // part of course, typical for modules - default page layout if $cm specified in require_login()
     'incourse' => array(
-        'file' => 'columns3.php',
-        'regions' => $col3regions,
+        'file' => 'columns2.php',
+        'regions' => $col2regions,
         'defaultregion' => 'side-pre',
     ),
     // The site home page.
